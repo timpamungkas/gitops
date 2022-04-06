@@ -1,7 +1,7 @@
-name: Changelog, Tag, Release on master
+name: tag-and-release-master
 on:
   workflow_run:
-    workflows: ["Push General Actions"]
+    workflows: [push-general-actions]
     types: [completed]
     branches: [master,main]
 

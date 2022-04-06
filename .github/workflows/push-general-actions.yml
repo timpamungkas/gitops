@@ -1,4 +1,4 @@
-name: Push General Actions
+name: push-general-actions
 on:
   push:
     branches-ignore:

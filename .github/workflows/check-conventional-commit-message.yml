@@ -1,4 +1,4 @@
-name: PR Conventional Commit
+name: pr-conventional-commit
 on:
   pull_request:
     types: [opened,edited,synchronize]
