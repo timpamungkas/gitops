@@ -54,4 +54,11 @@ class GitopsApiTest {
 .andExpect(content().string(containsStringIgnoringCase("Gradle Five")));
 	}
 
+	@Test
+		void testEndpointSix() throws Exception {
+		this.mockMvc.perform(get("/five")).andExpect(status().is2xxSuccessful())
+.andExpect(content().string(containsStringIgnoringCase("Gradle Six"))
+	);
+	}
+
 }
