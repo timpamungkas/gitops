@@ -1,8 +1,7 @@
-name: Push General Actions
+name: push-general-actions
 on:
-  push:
-    branches-ignore:
-      - "v*"
+  pull_request:
+    types: [opened,edited,synchronize]
 
 jobs:
   prettify-code:
