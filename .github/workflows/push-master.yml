@@ -4,6 +4,21 @@ on:
     branches: [master,main]
 
 jobs:
+  prettify-code:
+    needs: [security-scan-snyk, sca-sonarcloud]
+    name: prettify-code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Prettify the Java Code
+        uses: lwerner-lshigh/prettier_action_java@v1.1.1
+        with:
+          branch: ${{ github.head_ref }}
+          prettier_options: '--tab-width 4 --use-tabs true --write **/*.java'
+          
   tag-and-release:
     name: add-changelog-tag-and-release
     runs-on: ubuntu-latest
