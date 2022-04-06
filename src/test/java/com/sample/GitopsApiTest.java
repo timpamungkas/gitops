@@ -1,6 +1,5 @@
 package com.sample;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.containsStringIgnoringCase;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -21,24 +20,32 @@ class GitopsApiTest {
 
 	@Test
 	void testEndpointTest() throws Exception {
-		this.mockMvc.perform(get("/test"))
-			.andExpect(status().is2xxSuccessful())
-			.andExpect(
-				content().string(containsStringIgnoringCase("just a test"))
-			);
+		this.mockMvc.perform(get("/test")).andExpect(status().is2xxSuccessful())
+				.andExpect(content().string(containsStringIgnoringCase("just a test")));
 	}
 
 	@Test
 	void testEndpointOne() throws Exception {
-		this.mockMvc.perform(get("/one"))
-			.andExpect(status().is2xxSuccessful())
-			.andExpect(content().string(containsString("Gradle One")));
+		this.mockMvc.perform(get("/one")).andExpect(status().is2xxSuccessful())
+				.andExpect(content().string(containsStringIgnoringCase("Gradle One")));
 	}
 
 	@Test
 	void testEndpointTwo() throws Exception {
-		this.mockMvc.perform(get("/two"))
-			.andExpect(status().is2xxSuccessful())
-			.andExpect(content().string(containsString("Gradle Two")));
+		this.mockMvc.perform(get("/two")).andExpect(status().is2xxSuccessful())
+				.andExpect(content().string(containsStringIgnoringCase("Gradle Two")));
 	}
+
+	@Test
+	void testEndpointThree() throws Exception {
+		this.mockMvc.perform(get("/three")).andExpect(status().is2xxSuccessful())
+				.andExpect(content().string(containsStringIgnoringCase("Gradle Three")));
+	}
+
+	@Test
+	void testEndpointFour() throws Exception {
+		this.mockMvc.perform(get("/four")).andExpect(status().is2xxSuccessful())
+				.andExpect(content().string(containsStringIgnoringCase("Gradle Four")));
+	}
+	
 }
