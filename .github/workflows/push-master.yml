@@ -5,7 +5,6 @@ on:
 
 jobs:
   prettify-code:
-    needs: [security-scan-snyk, sca-sonarcloud]
     name: prettify-code
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +17,7 @@ jobs:
         with:
           branch: ${{ github.head_ref }}
           prettier_options: '--tab-width 4 --use-tabs true --write **/*.java'
-          
+
   tag-and-release:
     name: add-changelog-tag-and-release
     runs-on: ubuntu-latest
