@@ -20,45 +20,64 @@ class GitopsApiTest {
 
 	@Test
 	void testEndpointTest() throws Exception {
-		this.mockMvc.perform(get("/test")).andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(containsStringIgnoringCase("just a test")));
+		this.mockMvc.perform(get("/test"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(
+				content().string(containsStringIgnoringCase("just a test"))
+			);
 	}
 
 	@Test
 	void testEndpointOne() throws Exception {
-		this.mockMvc.perform(get("/one")).andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(containsStringIgnoringCase("Gradle One")));
+		this.mockMvc.perform(get("/one"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(
+				content().string(containsStringIgnoringCase("Gradle One"))
+			);
 	}
 
 	@Test
 	void testEndpointTwo() throws Exception {
-		this.mockMvc.perform(get("/two")).andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(containsStringIgnoringCase("Gradle Two")));
+		this.mockMvc.perform(get("/two"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(
+				content().string(containsStringIgnoringCase("Gradle Two"))
+			);
 	}
 
 	@Test
 	void testEndpointThree() throws Exception {
-		this.mockMvc.perform(get("/three")).andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(containsStringIgnoringCase("Gradle Three")));
+		this.mockMvc.perform(get("/three"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(
+				content().string(containsStringIgnoringCase("Gradle Three"))
+			);
 	}
 
 	@Test
 	void testEndpointFour() throws Exception {
-		this.mockMvc.perform(get("/four")).andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(containsStringIgnoringCase("Gradle Four")));
+		this.mockMvc.perform(get("/four"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(
+				content().string(containsStringIgnoringCase("Gradle Four"))
+			);
 	}
 
 	@Test
 	void testEndpointFive() throws Exception {
-		this.mockMvc.perform(get("/five")).andExpect(status().is2xxSuccessful())
-.andExpect(content().string(containsStringIgnoringCase("Gradle Five")));
+		this.mockMvc.perform(get("/five"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(
+				content().string(containsStringIgnoringCase("Gradle Five"))
+			);
 	}
 
 	@Test
-		void testEndpointSix() throws Exception {
-		this.mockMvc.perform(get("/five")).andExpect(status().is2xxSuccessful())
-.andExpect(content().string(containsStringIgnoringCase("Gradle Six"))
-	);
+	void testEndpointSix() throws Exception {
+		this.mockMvc.perform(get("/five"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(
+				content().string(containsStringIgnoringCase("Gradle Six"))
+			);
 	}
-
 }
