@@ -5,7 +5,7 @@ on:
 
 jobs:
   prettify-code:
-    name: Prettify Code
+    name: prettify-code
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -20,7 +20,7 @@ jobs:
 
   security-analysis:
     needs: ["prettify-code"]
-    name: Security Scan - SNYK
+    name: security-scan-snyk
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -41,7 +41,7 @@ jobs:
 
   static-analysis:
     needs: ["prettify-code"]
-    name: Static Code Analysis - SonarCloud
+    name: sca-sonarcloud
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
