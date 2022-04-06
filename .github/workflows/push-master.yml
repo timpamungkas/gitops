@@ -1,12 +1,11 @@
 name: tag-and-release-master
 on:
-  workflow_run:
-    workflows: [push-general-actions]
-    types: [completed]
+  pull_request:
+    types: [opened,edited,synchronize]
     branches: [master,main]
 
 jobs:
-  on-success:
+  tag-and-release:
     name: Add changelog, tag, and release
     runs-on: ubuntu-latest
     steps:
