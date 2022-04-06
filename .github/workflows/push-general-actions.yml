@@ -1,0 +1,70 @@
+name: Push General Actions
+on:
+  push:
+    branches-ignore:
+      - "v*"
+
+jobs:
+  prettify-code:
+    name: Prettify Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Prettify the Java Code
+        uses: lwerner-lshigh/prettier_action_java@v1.1.1
+        with:
+          branch: ${{ github.head_ref }}
+          prettier_options: '--tab-width 4 --use-tabs true --write **/*.java'
+
+  security-analysis:
+    needs: ["prettify-code"]
+    name: Security Scan - SNYK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Check vulnerabilities with Snyk
+        uses: snyk/actions/gradle-jdk11@master
+        continue-on-error: false
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args:
+            --all-sub-projects
+            --severity-threshold=high
+
+  static-analysis:
+    needs: ["prettify-code"]
+    name: Static Code Analysis - SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache Gradle packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Build and analyze
+        run: ./gradlew build jacocoTestReport sonarqube --info
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}

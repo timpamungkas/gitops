@@ -1,0 +1,28 @@
+name: Changelog, Tag, Release on master
+on:
+  workflow_run:
+    workflows: ["Push General Actions"]
+    types: [completed]
+    branches: [master,main]
+
+jobs:
+  on-success:
+    name: Add changelog, tag, and release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          release_branches: master,main
+      - name: Create a release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+          generateReleaseNotes: true
