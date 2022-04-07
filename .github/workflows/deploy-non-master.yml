@@ -1,0 +1,16 @@
+name: deploy-non-master
+on:
+  push:
+    branches: [test]
+
+jobs:
+  build-and-push-image:
+    name: build-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Gcloud login
+        run: echo gcloud-login

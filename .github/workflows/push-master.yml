@@ -1,4 +1,4 @@
-name: tag-and-release-master
+name: push-master
 on:
   push:
     branches: [master,main]

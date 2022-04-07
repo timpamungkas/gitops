@@ -1,4 +1,4 @@
-name: tag-and-release-master
+name: push-non-master
 on:
   push:
     branches-ignore: [master,main]
