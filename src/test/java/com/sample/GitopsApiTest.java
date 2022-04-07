@@ -74,7 +74,7 @@ class GitopsApiTest {
 
 	@Test
 	void testEndpointSix() throws Exception {
-		this.mockMvc.perform(get("/five"))
+		this.mockMvc.perform(get("/six"))
 			.andExpect(status().is2xxSuccessful())
 			.andExpect(
 				content().string(containsStringIgnoringCase("Gradle Six"))
