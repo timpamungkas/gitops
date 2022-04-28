@@ -2,7 +2,6 @@ package com.sample.gitops;
 
 import java.security.SecureRandom;
 import java.time.LocalTime;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
