@@ -2,8 +2,8 @@ package com.sample.gitops;
 
 import java.time.LocalTime;
 import java.util.concurrent.ThreadLocalRandom;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -49,13 +49,6 @@ public class GitopsApi {
 	public String six() {
 		var random = ThreadLocalRandom.current().nextBoolean();
 		return "Gradle Six minor " + LocalTime.now() + " " + random;
-	}
-
-	@GetMapping("/ten")
-	@PostMapping("/ten")
-	public String ten() {
-		var random = ThreadLocalRandom.current().nextBoolean();
-		return "Gradle Ten " + LocalTime.now() + " " + random;
 	}
 
 	@GetMapping("/test")
