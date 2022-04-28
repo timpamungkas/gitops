@@ -2,7 +2,6 @@ package com.sample.gitops;
 
 import java.time.LocalTime;
 import java.util.concurrent.ThreadLocalRandom;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
